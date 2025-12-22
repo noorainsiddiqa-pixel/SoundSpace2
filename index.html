@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SoundSpace - Find college friends through music compatibility">
+    <meta name="author" content="CodeKstra Team">
+    <title>SoundSpace - Find Friends Through Music</title>
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 
+    ============================================
+    SPACE BACKGROUND WITH ANIMATIONS
+    ============================================
+    Includes stars, milky way, shooting stars, and nebula effects
+    -->
+    <div class="space-background">
+        <div class="stars" id="stars"></div>
+        <div class="milky-way"></div>
+        <div class="shooting-stars" id="shootingStars"></div>
+        <div class="nebula"></div>
+        <div class="aurora"></div>
+    </div>
+
+    <!-- 
+    ============================================
+    TOP LOGO (VISIBLE ON ALL SCREENS)
+    ============================================
+    Fixed position logo that appears on every page
+    -->
+    <div class="top-logo">
+        <div class="soundwave-small">
+            <div class="wave-bar-small"></div>
+            <div class="wave-bar-small"></div>
+            <div class="wave-bar-small"></div>
+            <div class="wave-bar-small"></div>
+        </div>
+        <span class="logo-text">SoundSpace</span>
+    </div>
+
+    <!-- 
+    ============================================
+    SCREEN 1: LANDING PAGE
+    ============================================
+    Main landing page with hero section and CTA buttons
+    -->
+    <div class="screen active" id="landing">
+        <div class="container">
+            <!-- Animated Logo -->
+            <div class="logo-icon">
+                <div class="soundwave">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </div>
+            
+            <!-- Hero Content -->
+            <div class="landing">
+                <h1>Find Friends Through<br><span class="gradient-text">Music</span></h1>
+                <p class="subtitle">SoundSpace connects college students based on music taste compatibility. No pressure, no swipes — just genuine connections through shared playlists.</p>
+                
+                <!-- Call-to-Action Buttons -->
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showScreen('signin')">Get Started</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    SCREEN 2: SIGN IN PAGE
+    ============================================
+    User login with Google OAuth and email/password
+    -->
+    <div class="screen" id="signin">
+        <div class="container">
+            <!-- Progress Indicator -->
+            <div class="progress-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <!-- Sign In Card -->
+            <div class="auth-card">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue</p>
+                
+                <!-- Google Sign In Button -->
+                <button class="google-btn" onclick="showScreen('spotify')">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Continue with Google
+                </button>
+
+                <div class="divider">OR</div>
+
+                <!-- Email/Password Sign In Form -->
+                <form onsubmit="event.preventDefault(); showScreen('spotify');">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input">
+                            <input type="password" id="signinPassword" placeholder="••••••••" required>
+                            <span class="password-toggle" onclick="togglePassword('signinPassword')">👁️</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        Sign In →
+                    </button>
+                </form>
+
+                <!-- Navigation Links -->
+                <p class="text-center">
+                    Don't have an account? <span class="link" onclick="showScreen('signup')">Sign up</span>
+                </p>
+                <p class="text-center" style="margin-top: 15px;">
+                    <span class="link" onclick="showScreen('landing')">Back to home</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    SCREEN 3: SIGN UP PAGE
+    ============================================
+    New user registration form
+    -->
+    <div class="screen" id="signup">
+        <div class="container">
+            <!-- Progress Indicator -->
+            <div class="progress-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <!-- Sign Up Card -->
+            <div class="auth-card">
+                <h2>Create Account</h2>
+                <p>Join SoundSpace today</p>
+                
+                <!-- Google Sign Up Button -->
+                <button class="google-btn" onclick="showScreen('spotify')">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Sign up with Google
+                </button>
+
+                <div class="divider">OR</div>
+
+                <!-- Registration Form -->
+                <form onsubmit="event.preventDefault(); showScreen('spotify');">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>College Email</label>
+                        <input type="email" placeholder="you@college.edu" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input">
+                            <input type="password" id="signupPassword" placeholder="Create a strong password" required>
+                            <span class="password-toggle" onclick="togglePassword('signupPassword')">👁️</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <div class="password-input">
+                            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                            <span class="password-toggle" onclick="togglePassword('confirmPassword')">👁️</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        Create Account →
+                    </button>
+                </form>
+
+                <!-- Navigation Links -->
+                <p class="text-center">
+                    Already have an account? <span class="link" onclick="showScreen('signin')">Sign in</span>
+                </p>
+                <p class="text-center" style="margin-top: 15px;">
+                    <span class="link" onclick="showScreen('landing')">Back to home</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    SCREEN 4: SPOTIFY CONNECT PAGE
+    ============================================
+    Request Spotify account connection
+    -->
+    <div class="screen" id="spotify">
+        <div class="container">
+            <!-- Progress Indicator -->
+            <div class="progress-dots">
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <!-- Spotify Connect Card -->
+            <div class="auth-card spotify-card">
+                <!-- Spotify Logo -->
+                <div class="spotify-icon">
+                    <svg viewBox="0 0 24 24" width="80" height="80">
+                        <path fill="white" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                </div>
+
+                <h2>Connect Spotify</h2>
+                <p class="subtitle">Link your Spotify to find music-matched friends</p>
+
+                <!-- Privacy Information -->
+                <div class="privacy-list">
+                    <div class="privacy-item">
+                        <span class="check-icon">✓</span>
+                        <span>Read-only access to your listening data</span>
+                    </div>
+                    <div class="privacy-item">
+                        <span class="check-icon">✓</span>
+                        <span>Your raw data is never publicly displayed</span>
+                    </div>
+                    <div class="privacy-item">
+                        <span class="check-icon">✓</span>
+                        <span>You control what insights are shared</span>
+                    </div>
+                </div>
+
+                <!-- Connect Button -->
+                <button class="btn btn-spotify" onclick="showScreen('spotifyLogin')">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="white" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    Connect with Spotify
+                </button>
+
+                <p class="text-center" style="margin-top: 20px;">
+                    <span class="link" onclick="showScreen('signin')">Go back</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    SCREEN 5: SPOTIFY LOGIN PAGE
+    ============================================
+    Spotify credential input form
+    -->
+    <div class="screen" id="spotifyLogin">
+        <div class="container">
+            <!-- Progress Indicator -->
+            <div class="progress-dots">
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <!-- Spotify Login Card -->
+            <div class="auth-card">
+                <!-- Small Spotify Logo -->
+                <div class="spotify-icon-small">
+                    <svg viewBox="0 0 24 24" width="40" height="40">
+                        <path fill="white" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                </div>
+
+                <h2>Log in to Spotify</h2>
+                <p>Enter your Spotify credentials</p>
+
+                <!-- Spotify Login Form -->
+                <form onsubmit="event.preventDefault(); showScreen('analyzing');">
+                    <div class="form-group">
+                        <label>Email or username</label>
+                        <input type="text" placeholder="Email or username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input">
+                            <input type="password" id="spotifyPassword" placeholder="Password" required>
+                            <span class="password-toggle" onclick="togglePassword('spotifyPassword')">👁️</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-spotify" style="width: 100%; margin-top: 20px;">
+                        Log In
+                    </button>
+                </form>
+
+                <p class="text-center" style="margin-top: 20px;">
+                    <span class="link" onclick="showScreen('spotify')">Go back</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    SCREEN 6: ANALYZING MUSIC PAGE
+    ============================================
+    Loading screen while analyzing user's music data
+    Auto-progresses to dashboard after 3 seconds
+    -->
+    <div class="screen" id="analyzing">
+        <div class="container">
+            <!-- Progress Indicator -->
+            <div class="progress-dots">
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+
+            <!-- Loading Card -->
+            <div class="auth-card loading-card">
+                <!-- Animated Soundwave Logo -->
+                <div class="logo-icon loading-icon">
+                    <div class="soundwave">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                </div>
+                
+                <h2>Analyzing Your Music</h2>
+                <p class="subtitle">Finding your music personality...</p>
+
+                <!-- Loading Status -->
+                <div class="loading-status">
+                    <div class="spinner"></div>
+                    <span>Processing your listening data</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    SCREEN 7: MATCHES DASHBOARD
+    ============================================
+    Main dashboard showing music-matched friends
+    -->
+    <div class="screen" id="dashboard">
+        <div class="container" style="max-width: 1400px;">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="user-section">
+                    <span class="username">@musiclover</span>
+                    <span class="sign-out" onclick="showScreen('landing')">
+                        <span>↗</span>
+                        <span>Sign out</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="tabs">
+                <div class="tab active">
+                    <span>👥</span>
+                    <span>Your Matches</span>
+                </div>
+                <div class="tab">
+                    <span>🎵</span>
+                    <span>Music Insights</span>
+                </div>
+            </div>
+
+            <!-- Section Header -->
+            <h2 class="section-title">People Who Share Your Taste</h2>
+            <p class="section-subtitle">Based on your listening patterns, these people might be great friends</p>
+
+            <!-- Matches Grid -->
+            <div class="matches-grid">
+                <!-- Match Card 1: Alex Chen -->
+                <div class="match-card">
+                    <div class="match-header">
+                        <div class="avatar">
+                            AC
+                            <div class="music-badge">🎵</div>
+                        </div>
+                        <div class="match-info">
+                            <div class="match-name">Alex Chen</div>
+                            <div class="match-percentage">
+                                <div class="mini-soundwave">
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                </div>
+                                <span class="percentage">89% Match</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-insight">
+                        <span>🌙</span>
+                        <span>You both listen to lo-fi after midnight</span>
+                    </div>
+
+                    <div class="shared-section">
+                        <div class="shared-label">Shared Artists</div>
+                        <div class="tags">
+                            <span class="tag">Arctic Monkeys</span>
+                            <span class="tag">The 1975</span>
+                            <span class="tag">Tame Impala</span>
+                        </div>
+                    </div>
+
+                    <div class="shared-section">
+                        <div class="shared-label">Shared Genres</div>
+                        <div class="tags">
+                            <span class="tag">Indie Rock</span>
+                            <span class="tag">Alt Pop</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-icebreaker" onclick="openModal('Alex Chen', 'AC', ['Arctic Monkeys', 'The 1975', 'Tame Impala'])">
+                        <span>💬</span>
+                        <span>Send Icebreaker</span>
+                    </button>
+                </div>
+
+                <!-- Match Card 2: Jordan Rivera -->
+                <div class="match-card">
+                    <div class="match-header">
+                        <div class="avatar">
+                            JR
+                            <div class="music-badge">🎵</div>
+                        </div>
+                        <div class="match-info">
+                            <div class="match-name">Jordan Rivera</div>
+                            <div class="match-percentage">
+                                <div class="mini-soundwave">
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                </div>
+                                <span class="percentage">82% Match</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-insight">
+                        <span>🏋️</span>
+                        <span>Similar workout playlist energy</span>
+                    </div>
+
+                    <div class="shared-section">
+                        <div class="shared-label">Shared Artists</div>
+                        <div class="tags">
+                            <span class="tag">Dua Lipa</span>
+                            <span class="tag">The Weeknd</span>
+                            <span class="tag">Doja Cat</span>
+                        </div>
+                    </div>
+
+                    <div class="shared-section">
+                        <div class="shared-label">Shared Genres</div>
+                        <div class="tags">
+                            <span class="tag">Pop</span>
+                            <span class="tag">R&B</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-icebreaker" onclick="openModal('Jordan Rivera', 'JR', ['Dua Lipa', 'The Weeknd', 'Doja Cat'])">
+                        <span>💬</span>
+                        <span>Send Icebreaker</span>
+                    </button>
+                </div>
+
+                <!-- Match Card 3: Sam Taylor -->
+                <div class="match-card">
+                    <div class="match-header">
+                        <div class="avatar">
+                            ST
+                            <div class="music-badge">🎵</div>
+                        </div>
+                        <div class="match-info">
+                            <div class="match-name">Sam Taylor</div>
+                            <div class="match-percentage">
+                                <div class="mini-soundwave">
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                </div>
+                                <span class="percentage">78% Match</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-insight">
+                        <span>🎧</span>
+                        <span>You both have study hour playlists</span>
+                    </div>
+
+                    <div class="shared-section">
+                        <div class="shared-label">Shared Artists</div>
+                        <div class="tags">
+                            <span class="tag">Mac Miller</span>
+                            <span class="tag">Tyler, the Creator</span>
+                            <span class="tag">Frank Ocean</span>
+                        </div>
+                    </div>
+
+                    <div class="shared-section">
+                        <div class="shared-label">Shared Genres</div>
+                        <div class="tags">
+                            <span class="tag">Hip Hop</span>
+                            <span class="tag">Neo Soul</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-icebreaker" onclick="openModal('Sam Taylor', 'ST', ['Mac Miller', 'Tyler, the Creator', 'Frank Ocean'])">
+                        <span>💬</span>
+                        <span>Send Icebreaker</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    ICEBREAKER MODAL
+    ============================================
+    Modal popup for sending messages to matches
+    Includes AI-generated conversation starters
+    -->
+    <div class="modal" id="icebreakerModal">
+        <div class="modal-content">
+            <!-- Close Button -->
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            
+            <!-- Modal Header with User Info -->
+            <div class="modal-header">
+                <div class="modal-avatar" id="modalAvatar">AC</div>
+                <div class="modal-user-info">
+                    <h3 id="modalName">Alex Chen</h3>
+                    <p>Start a conversation</p>
+                </div>
+            </div>
+
+            <!-- Shared Interests Tags -->
+            <div class="modal-tags" id="modalTags"></div>
+
+            <!-- Icebreakers Section -->
+            <div class="icebreakers-section">
+                <h4>✨ Suggested Icebreakers</h4>
+                
+                <!-- Icebreaker Options -->
+                <div class="icebreaker-option" onclick="selectIcebreaker(this)">
+                    What song has been on repeat for you lately?
+                </div>
+                
+                <div class="icebreaker-option" onclick="selectIcebreaker(this)">
+                    Do you have a playlist for every mood?
+                </div>
+                
+                <div class="icebreaker-option" onclick="selectIcebreaker(this)">
+                    What's a hidden gem artist you've discovered recently?
+                </div>
+
+                <!-- Custom Message Input -->
+                <textarea class="message-input" placeholder="Or write your own message..." id="messageInput"></textarea>
+
+                <!-- Send Button -->
+                <button class="btn btn-primary btn-send" onclick="sendMessage()">
+                    <span>✈️</span>
+                    <span>Send Message</span>
+                </button>
+
+                <!-- Privacy Note -->
+                <p class="modal-footer">Your message can be anonymous if you prefer</p>
+            </div>
+        </div>
+    </div>
+
+  <script src="script.js"></script>
+  <function_calls>
+<invoke name="artifacts">
+<parameter name="command">update</parameter>
+<parameter name="id">soundspace-html-doc</parameter>
+<parameter name="old_str">    <!-- Link to external JavaScript file -->
+    <script src="script.js</parameter>
+<parameter name="new_str">    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html></parameter>
